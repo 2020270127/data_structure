@@ -21,5 +21,29 @@
     <ClCompile Include="sort.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="boolean.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="조교_3_sort.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hanoi.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="horner.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sort_binsearch.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="union.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="perm.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pigeon.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

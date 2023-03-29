@@ -17,34 +17,39 @@ void sort(int* arr, int size) {
         swap(arr[j], arr[min], temp);
     }
 }
-//int binary_search(int* arr,int search_num ,int start, int end) {
-//    int middle = (start + end) / 2; // 5/2 = 2
-//    if (search_num < arr[middle]) {
-//        binary_search(arr, search_num, 0, middle - 1);
-//    }
-//    else if (arr[middle] < search_num) {
-//        binary_search(arr, search_num, middle + 1, end);
-//    }
-//    else if (arr[middle] == search_num)
-//        return middle;//index
-//    else
-//        return -1;
-//}
-int binary_search(int* arr, int search_num, int left, int right) {
-
-    while (left <= right) {
-        int middle = (left + right) / 2;
+int binary_search(int* arr,int search_num ,int start, int end) {
+    int middle = (start + end) / 2; // 5/2 = 2
+    while(start > end) {
         if (search_num < arr[middle]) {
-            right = middle - 1;
+            end = middle -1;
+            binary_search(arr, search_num, start, end);
         }
-        else if (search_num > arr[middle]) {
-            left = middle + 1;
+        else if (arr[middle] < search_num) {
+            start = middle + 1;
+            binary_search(arr, search_num, start, end);
         }
-        else if (search_num == arr[middle])
-            return middle;
+        else if (arr[middle] == search_num)
+            return middle;//index
+        else
+            return -1;
     }
-    return -1;
-}
+   }
+   
+//int binary_search(int* arr, int search_num, int left, int right) {
+//
+//    while (l.,t) {
+//        int middle = (left + right) / 2;
+//        if (search_num < arr[middle]) {
+//            right = middle - 1;
+//        }
+//        else if (search_num > arr[middle]) {
+//            left = middle + 1;
+//        }
+//        else if (search_num == arr[middle])
+//            return middle;
+//    }
+//    return -1;
+//}
 
 
 int main() {

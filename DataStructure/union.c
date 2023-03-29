@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdbool.h>
-int main() {
-	//struct personal_info {
+
+//struct personal_info {
 	//	char name[10];
 	//	int age;
 	//	float salary;
@@ -19,6 +17,9 @@ int main() {
 	//person.age = 10;
 	//person.salary = 35000;
 
+#include <stdio.h>
+#include <stdbool.h>
+int main() {
 	typedef struct _sexType {
 		enum tagField { female, male } sex;
 		union _u {
@@ -37,8 +38,6 @@ int main() {
 
 	person1.sexInfo.sex = male;
 	person1.sexInfo.u.beard = 0;
-	person2.sexInfo.sex = false;
+	person2.sexInfo.sex = female;
 	person2.sexInfo.u.children = 4;
-
-
 }

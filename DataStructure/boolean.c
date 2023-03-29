@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 void printBooleans(int n, int* arr, int idx) {
+    
+
     if (idx == n) { // 기저 조건: 모든 변수에 대한 값을 설정한 경우
         printf("< ");
         for (int i = 0; i < n; i++) {
