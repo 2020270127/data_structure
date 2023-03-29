@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int a[5] = {5,4,3,2,1};
+int a[5] = { 5,4,3,2,1 };
 
 int horner(int k);
 int main() {

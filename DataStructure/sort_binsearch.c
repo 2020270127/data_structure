@@ -9,9 +9,9 @@ void sort(int* arr, int size) {
     for (int j = 0; j < size; j++)
     {
         min = j;
-        for (int i = j+1 ; i < size; i++)
+        for (int i = j + 1; i < size; i++)
         {
-            if ( arr[min] > arr[i])
+            if (arr[min] > arr[i])
                 min = i;
         }
         swap(arr[j], arr[min], temp);
@@ -31,7 +31,7 @@ void sort(int* arr, int size) {
 //        return -1;
 //}
 int binary_search(int* arr, int search_num, int left, int right) {
-    
+
     while (left <= right) {
         int middle = (left + right) / 2;
         if (search_num < arr[middle]) {
@@ -71,5 +71,5 @@ int main() {
     }
     printf("arr[%d] = %d\n", find_num_index, arr[find_num_index]);
 
-    
+
 }

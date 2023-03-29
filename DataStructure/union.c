@@ -20,7 +20,7 @@ int main() {
 	//person.salary = 35000;
 
 	typedef struct _sexType {
-		enum tagField {female, male} sex;
+		enum tagField { female, male } sex;
 		union _u {
 			int children;
 			bool beard;
@@ -41,4 +41,4 @@ int main() {
 	person2.sexInfo.u.children = 4;
 
 
-} 
+}

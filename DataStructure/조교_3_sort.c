@@ -45,14 +45,14 @@ void shellSort(int* arr) {
 //binsearch ±¸Çö
 int main() {
 	int arr[3] = { 0, };
-	
+
 	scanf_s("%d %d %d", &arr[0], &arr[1], &arr[2]);
-	
+
 	//select_swap(arr);
 	//insert_swap(arr);
 	shellSort(arr);
-	for(int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 		printf("%d ", arr[i]);
-	
+
 
 }

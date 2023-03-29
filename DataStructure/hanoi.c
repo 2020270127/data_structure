@@ -15,6 +15,6 @@ void hanoi(int n, int from, int by, int to) {
     }
 }
 void move(int from, int to) {
-    printf("원반을 %d번째 기둥에서 %d번째 기둥으로 옮기세요\n",from, to);
+    printf("원반을 %d번째 기둥에서 %d번째 기둥으로 옮기세요\n", from, to);
     count++;
 }
