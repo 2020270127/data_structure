@@ -45,5 +45,17 @@
     <ClCompile Include="pigeon.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="check_perfectNumber.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="factorial.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="fibonacci.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="binomial_coefficient.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
