@@ -29,6 +29,7 @@ int loop_fibonacci(int n) {
 	}
 	return arr[n];
 }
+
 int main() {
 	int input;
 	printf("input : ");
