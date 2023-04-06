@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 int recursive_factorial(int n, int result) {
 	result *= n;
 	if (n == 1)
@@ -26,4 +27,6 @@ int main() {
 		printf("recursive : %d\n", recursive_factorial(input, result));
 		printf("loop : %d", loop_factorial(input, result));
 	}
+
+	printf("size of factorial : %d", sizeof(recursive_factorial));
 }
