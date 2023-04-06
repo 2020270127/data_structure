@@ -3,7 +3,7 @@
 #define TRUE 1
 
 typedef struct _sexType {
-	enum tagField {female, male, idonknow, youknow, hihi} sex; //enum은 정수로 저장되므로 대부분의 컴파일러에서 4바이트로 정의된다.
+	enum tagField { female, male, idonknow, youknow, hihi } sex; //enum은 정수로 저장되므로 대부분의 컴파일러에서 4바이트로 정의된다.
 	union _u {
 		int children; //4바이트
 		int beard;//4바이트 >> 가장 큰 값인 4바이트를 children,beard가 공유함

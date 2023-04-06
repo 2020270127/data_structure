@@ -12,7 +12,7 @@ typedef struct _humanBeing {
 } humanBeing;
 humanBeing omg, homg;
 
-int humansEqual(humanBeing *person1, humanBeing *person2) {
+int humansEqual(humanBeing* person1, humanBeing* person2) {
 	if (strcmp(person1->name, person2->name))
 		return FALSE;
 	if (person1->age != person2->age)
@@ -23,13 +23,13 @@ int humansEqual(humanBeing *person1, humanBeing *person2) {
 
 }
 int main() {
-	struct personal_info{ //구조체 이름 반드시 기재! 자기참조를 위해 
+	struct personal_info { //구조체 이름 반드시 기재! 자기참조를 위해 
 		char name[10];
 		int age;
 		float salary; //field
 	} person; //personal_info라는 구조를 가진 변수(~객체) person 생성
 	struct personal_info person1; //이렇게 personal_info라는 구조를 가진 또다른 구조체 생성 가능
-	
+
 	typedef struct personal_info1 {
 		char name[10];
 		int age;
@@ -41,7 +41,7 @@ int main() {
 
 	omg.name = (char*)malloc(sizeof(char) * 10);
 	homg.name = (char*)malloc(sizeof(char) * 10);
-	
+
 	strcpy(omg.name, "lee");
 	omg.age = 23;
 	omg.salary = 10000000;
