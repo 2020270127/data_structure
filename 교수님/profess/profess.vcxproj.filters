@@ -24,5 +24,8 @@
     <ClCompile Include="array_addr.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="float_point.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
