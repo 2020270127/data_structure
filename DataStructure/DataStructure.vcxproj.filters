@@ -39,9 +39,6 @@
     <ClCompile Include="sort_binsearch.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="union.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="perm.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -67,6 +64,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="array_addr.c">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="struct.c">
+      <Filter>소스 파일\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="union.c">
       <Filter>소스 파일\NewFilter1</Filter>
     </ClCompile>
   </ItemGroup>
