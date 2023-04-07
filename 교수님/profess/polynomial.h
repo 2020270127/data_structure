@@ -15,9 +15,9 @@ typedef struct _polynomial {
 	unsigned int finish;
 } polynomial;
 
-void attach(float coefficient, int exponent) {
+void attach_to_new(float coefficient, int exponent) {
 	if (avail >= MAX_DEGREE) {
-		exit(0);
+		exit(1);
 	}
 	terms[avail].coef = coefficient;
 	terms[avail++].expon = exponent;
@@ -30,21 +30,26 @@ void padd(polynomial A, polynomial B, polynomial* D) {
 		switch (COMPARE(terms[A.start].expon, terms[B.start].expon))
 		{
 		case -1:
-			attach(terms[B.start].coef, terms[B.start].expon);
+			attach_to_new(terms[B.start].coef, terms[B.start].expon);
 			B.start++;
 			break;
 		case 0:
 			coefficient = terms[A.start].coef + terms[B.start].coef;
 			if (coefficient)
-				attach(coefficient, terms[A.start].expon); // A,B의 expon값이 같으므로 A,B중 어떤 expon값을 고르던 동일
+				attach_to_new(coefficient, terms[A.start].expon); // A,B의 expon값이 같으므로 A,B중 어떤 expon값을 고르던 동일
 			A.start++;
 			B.start++;
 			break;
 		case 1:
-			attach(terms[A.start].coef, terms[A.start].expon);
+			attach_to_new(terms[A.start].coef, terms[A.start].expon);
 			A.start++;
 		}
-	}
+	} //해당 루프의 최악의 시간복잡도: (A 항의 개수) + (B항의 개수) - 1(항상 마지막 하나가 대입되기 전에 루프 종료)
+	for (; A.start <= A.finish; A.start++) 
+		attach_to_new(terms[A.start].coef, terms[A.start].expon);
+	for (; B.start <= B.finish; B.start++)
+		attach_to_new(terms[B.start].coef, terms[B.start].expon);
+	//남아있는 항들을 처리하는 루프, 최악의 시간 복잡도는 : (A항의 개수) + (B항의 개수)
 	D->finish = avail - 1; //avail은 다음칸을 가리키고 있으므로 한칸 전으로 인덱스 설정
 }
 void print_info(polynomial* D) {
