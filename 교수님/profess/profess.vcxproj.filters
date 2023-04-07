@@ -27,5 +27,16 @@
     <ClCompile Include="float_point.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="polynomial.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="time_analysis.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="polynomial.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
