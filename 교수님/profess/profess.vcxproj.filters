@@ -33,6 +33,12 @@
     <ClCompile Include="time_analysis.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="transepose_matrix.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sparse_matrix.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="polynomial.h">
