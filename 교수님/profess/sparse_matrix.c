@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#define MAX_COLS 101
-#define MAX_ROWS 101
+#define COMPARE(x,y)(((x)>(y))?1:((x)==(y))? 0:1)
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+#define MAX_ELEMENTS 	101 /* maximum number of terms + 1 */
+#define MAX_COLS		100
+#define MAX_ROWS		MAX_COLS
 /*
  15  0 0 22 0 -15
  0  11 3 0  0  0
@@ -11,7 +15,32 @@
  91 0  0  0 0  0
  0  0 28  0 0  0
 */
-#define MAX_ELEMENTS 101
+
+///////////////////////////copied code////////////////////////////////////////////
+unsigned int smcreate(smatrix* a, const unsigned int rows, const unsigned int cols) {
+	assert(a != NULL);
+
+	unsigned int capacity = MIN(rows * cols, MAX_ELEMENTS);
+	*a = malloc(capacity * sizeof(element));
+	(*a)[0].row = rows;
+	(*a)[0].col = cols;
+	(*a)[0].value = 0; // zero matrix
+	return capacity;
+}
+void storeSum(smatrix d, int* totalD, int row, int column, int* sum) {
+	/* if *sum != 0, then it along with its row and column
+	   position is stored as the *totalD+1 entry in d */
+	if (*sum) {
+		assert(*totalD < MAX_ELEMENTS - 1);
+		/* printf("%d \n", *totalD); */
+		d[++ * totalD].row = row;
+		d[*totalD].col = column;
+		d[*totalD].value = *sum;
+		*sum = 0;
+	}
+}
+////////////////////////////////////////////////////////////////////////////////
+
 typedef struct _elements {
 	int row;
 	int col;
@@ -94,8 +123,65 @@ void print_array(smatrix a, int num) {
 	}
 	printf("\n");
 }
+
 void smadd(smatrix a, smatrix b, smatrix* d) {
 
+}
+
+void smmultiply(smatrix a, smatrix b, smatrix d) {
+	assert((a != NULL) && (b != NULL) && (d != NULL));
+	assert(a[0].col == b[0].row); //행렬곱 성립 조건
+	assert(a[0].col > 0);// 왜 a만 확인하지..?
+
+	int rowBegin = 1, row = a[1].row, totalD = 0, sum = 0;
+	int rowsA = a[0].row, colsA = a[0].col, totalA = a[0].value;
+	int					  colsB = b[0].col, totalB = b[0].value;//가시화
+
+	smatrix newA, newB;
+	int capacity = smcreate(&newA, totalA + 2, 1);//첫번째 행에는 행렬에 대한 정보, 마지막 행에는 종료 조건. 그래서 +2
+	//capacity는 생성된 행렬의 크기를 반환
+	assert(capacity >= totalA + 2);
+	memcpy(newA, a, (totalA + 1) * sizeof(element)); //newA의 메모리에 a메모리 내용을 복붙
+
+	capacity = smcreate(&newB, totalB + 2, 1);//첫번째 행에는 행렬에 대한 정보, 마지막 행에는 종료 조건. 그래서 +2
+	assert(capacity >= totalB + 2);
+	smfasttranspose(b, newB); //newB 는 b의 transpose
+	
+	newA[totalA + 1].row = rowsA;//마지막 행의 값 설정
+	newB[totalB + 1].row = colsB;
+	newB[totalB + 1].col = 0;
+
+	for (int i = rowBegin; i <= totalA;) {
+		int column = newB[1].row; //위에서 행은 이미 A의 행이라 선언, 열은 B의 열임. 행열곱이니깐
+		for (int j = 1; j <= totalB + 1;) {
+			if (newA[i].row != row) {
+				storeSum(d, &totalD, row, column, &sum);//sum은 i,j가 일치할때 행렬곱 합원소 중의 하나, totalD는 생성된 sum값 수(호출될때마다 +1)
+														//matrix d의 totalD번째 인덱스에 row, column, sum값을 대입함. sum값은 0으로 초기화하기 위해 주소로 전달
+				i = rowBegin;
+				for (; newB[j].row == column; j++);
+				column = newB[j].row; //밑의 switch case에서 i,j값을 옮겼는데 칸을 맞춰주는 작업. 이 for문 밖에서 rowBegin, row값을 수정해준다. 
+			}
+			else if (newB[j].row != column) {
+				storeSum(d, &totalD, row, column, &sum);
+				i = rowBegin;
+				column = newB[j].row;
+			}  //위에선 행에 대한 칸을 맞췄고 이젠 열에 대한 칸을 맞춘다.
+
+
+			else switch (COMPARE(newA[i].col, newB[j].col)) {
+			case -1: i++; break;
+			case 0: 
+				sum += newA[i++].value * newB[j++].value;
+				break;
+			case 1: j++;//이거 어디서 봤지? polynomial에서의 다항식의 덧셈 구현과 비슷하네
+			}
+
+		}/* end of for j <= totalB+1 */
+
+		for (; a[i].row == row; i++);
+		rowBegin = i; row = a[i].row;
+	}/* end of for i <= totalA */
+	d[0].row = rowsA; d[0].col = colsB; d[0].value = totalD;
 }
 
 int main() {

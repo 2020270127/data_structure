@@ -20,10 +20,24 @@ void mtranspose(matrix a, matrix *b) { //2차원 배열을 하나하나  transpose
 	}
 
 }
+
+void mmultiply(matrix a, matrix b, matrix* d) {
+	assert(d != NULL);
+	assert((a.rows > 0) && (a.cols > 0) && (b.rows > 0) && (b.cols > 0));
+	assert((a.cols == b.rows));//행렬곱 가능 조건
+
+	for(int i=0; i<a.rows; i++)
+		for (int j = 0; j < b.cols; j++) {
+			d->e[i][j] = 0;//행렬곱 결과에 맞는 0 행렬 생성
+			for (int k = 0; k < a.cols; k++) //행렬곱의 결과는 후에 곱한 행렬의 열의 form을 따른다.
+				d->e[i][j] += a.e[i][k] * b.e[k][i];
+		}
+}
+
 int main() {
 
-	matrix a,b;
-	a.rows = 3; a.cols = 3; b.rows = 3; b.cols = 3;
+	matrix a,b,d;
+	a.rows = 3; a.cols = 3; b.rows = 3; b.cols = 3; d.rows = 3; d.cols = 3;
 	a.e = malloc(sizeof(int*) * a.rows);
 	for (int i = 0; i < a.rows; i++) {
 		a.e[i] = malloc(sizeof(int) * a.cols);
@@ -35,6 +49,11 @@ int main() {
 	b.e = malloc(sizeof(int*) * b.rows);
 	for (int i = 0; i < b.rows; i++) {
 		b.e[i] = malloc(sizeof(int) * b.cols);
+	}
+
+	d.e = malloc(sizeof(int*) * d.rows);
+	for (int i = 0; i < d.rows; i++) {
+		d.e[i] = malloc(sizeof(int) * d.cols);
 	}
 
 	mtranspose(a, &b);
