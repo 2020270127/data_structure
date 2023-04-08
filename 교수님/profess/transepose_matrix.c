@@ -40,7 +40,7 @@ int main() {
 	mtranspose(a, &b);
 
 	for (int i = 0; i < b.rows; i++) {
-		for (int j = 0; j < b.cols; j++) {
+		for (int j = 0; j < b.cols; j++) { // time complexity O(rows * cols)
 			printf("%d ", b.e[i][j]);
 		}
 		printf("\n");
