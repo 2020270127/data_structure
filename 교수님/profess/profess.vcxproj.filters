@@ -39,6 +39,12 @@
     <ClCompile Include="sparse_matrix.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="string.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="nfind.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="polynomial.h">
