@@ -151,14 +151,14 @@ void smmultiply(smatrix a, smatrix b, smatrix d) {
 	newB[totalB + 1].row = colsB;
 	newB[totalB + 1].col = 0;
 
-	for (int i = rowBegin; i <= totalA;) {
+	for (int i = rowBegin; i <= totalA;) { // 행렬 A원소 개수만큼 반복
 		int column = newB[1].row; //위에서 행은 이미 A의 행이라 선언, 열은 B의 열임. 행열곱이니깐
-		for (int j = 1; j <= totalB + 1;) {
+		for (int j = 1; j <= totalB + 1;) { //행렬 B원소 +1 수만큼 반복
 			if (newA[i].row != row) {
 				storeSum(d, &totalD, row, column, &sum);//sum은 i,j가 일치할때 행렬곱 합원소 중의 하나, totalD는 생성된 sum값 수(호출될때마다 +1)
 														//matrix d의 totalD번째 인덱스에 row, column, sum값을 대입함. sum값은 0으로 초기화하기 위해 주소로 전달
 				i = rowBegin;
-				for (; newB[j].row == column; j++);
+				for (; newB[j].row == column; j++);//남은 b 원소??
 				column = newB[j].row; //밑의 switch case에서 i,j값을 옮겼는데 칸을 맞춰주는 작업. 이 for문 밖에서 rowBegin, row값을 수정해준다. 
 			}
 			else if (newB[j].row != column) {
@@ -178,7 +178,7 @@ void smmultiply(smatrix a, smatrix b, smatrix d) {
 
 		}/* end of for j <= totalB+1 */
 
-		for (; a[i].row == row; i++);
+		for (; a[i].row == row; i++);//남은 a원소
 		rowBegin = i; row = a[i].row;
 	}/* end of for i <= totalA */
 	d[0].row = rowsA; d[0].col = colsB; d[0].value = totalD;

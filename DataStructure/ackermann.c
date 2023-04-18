@@ -30,7 +30,6 @@ int loop_ackermann(int m, int n) {
         }        
     }
     return n;
-
 }
 
 int main(int argc, char* argv[]) {

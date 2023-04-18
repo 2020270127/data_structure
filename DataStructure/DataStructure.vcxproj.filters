@@ -21,9 +21,6 @@
     <ClCompile Include="malloc.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="sort.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="boolean.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -61,6 +58,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="powerset.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hahanoi.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="test.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

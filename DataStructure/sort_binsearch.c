@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define swap(x,y,t)((t) = (x), (x) = (y), (y) = (t))
+#include <windows.h>
+#define     find_num_index(a)  loop_binary_search(arr, a, 0, 4)
+#define SWAP(x,y,t)((t) = (x), (x) = (y), (y) = (t))
+#define COMPARE(x,y) ((x)>(y) ? 1 : (x)==(y) ? 0 : -1)
 
 //오름차순 정렬
 void sort(int* arr, int size) {
@@ -14,67 +17,58 @@ void sort(int* arr, int size) {
             if (arr[min] > arr[i])
                 min = i;
         }
-        swap(arr[j], arr[min], temp);
+        SWAP(arr[j], arr[min], temp);
     }
 }
-int binary_search(int* arr,int search_num ,int start, int end) {
-    int middle = (start + end) / 2; // 5/2 = 2
-    while(start > end) {
-        if (search_num < arr[middle]) {
-            end = middle -1;
-            binary_search(arr, search_num, start, end);
-        }
-        else if (arr[middle] < search_num) {
+int loop_binary_search(int* arr, int search_num, int start, int end) {
+    while (start <= end) {
+        int middle = (start + end) / 2;
+        switch (COMPARE(arr[middle], search_num)) {
+        case 1:
+            end = middle - 1;
+            break;
+        case 0:
+            return middle;
+        case -1:
             start = middle + 1;
-            binary_search(arr, search_num, start, end);
+            break;
         }
-        else if (arr[middle] == search_num)
-            return middle;//index
-        else
-            return -1;
     }
-   }
+    return -1;
+}
+int recur_binary_search(int* arr, int search_num, int start, int end) {
+ 
+    int middle = (start + end) / 2;
+    if (!(start <= end))
+        return -1;
+    switch (COMPARE(arr[middle], search_num)) {
+    case 1:
+        recur_binary_search(arr, search_num, start, middle - 1);
+        break;
+    case 0:
+        return middle;
+    case -1:
+        recur_binary_search(arr, search_num, middle + 1, end);
+        break;
+    }
+}
    
-//int binary_search(int* arr, int search_num, int left, int right) {
-//
-//    while (l.,t) {
-//        int middle = (left + right) / 2;
-//        if (search_num < arr[middle]) {
-//            right = middle - 1;
-//        }
-//        else if (search_num > arr[middle]) {
-//            left = middle + 1;
-//        }
-//        else if (search_num == arr[middle])
-//            return middle;
-//    }
-//    return -1;
-//}
 
 
 int main() {
     int arr[5] = { 0,1,2,3,4 };
-    int find_num, find_num_index;
+    int find_num, find_num_index, num;
 
-    //int* arr;
-    //int n, temp;
-    //printf("size of array\n");
-    //scanf_s("%d", &n);
-    //arr = (int*)malloc(sizeof(int) * n);
-    //for (int i = 0; i < n; i++)
-    //    scanf_s("%d", &arr[i]);
-    //sort(arr,n);
-    //for (int i = 0; i < n; i++)
-    //    printf("%d ", arr[i]);
+    //printf("what do you wanna find?\n");
+    //scanf_s("%d", &find_num);
 
-    printf("what do you wanna find?\n");
-    scanf_s("%d", &find_num);
-    find_num_index = binary_search(arr, find_num, 0, 4);
-    if (find_num_index == -1) {
-        printf("can't find file\n");
-        exit(-1);
+    for (int i = -1; i < 6; i++) {
+        num = find_num_index(i);
+        if (num == -1) {
+            printf("can't find the value\n");
+            continue;
+        }
+        printf("%d\n", find_num_index(i));
     }
-    printf("arr[%d] = %d\n", find_num_index, arr[find_num_index]);
-
 
 }
